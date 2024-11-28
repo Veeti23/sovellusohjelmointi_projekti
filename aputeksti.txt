@@ -1,0 +1,7 @@
+venv = cbc_env
+projekti = crazy_book_clubs
+verkkokauppa = crazy_book_clubs
+
+
+superuser = admin
+password = admin123
