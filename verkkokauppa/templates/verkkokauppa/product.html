@@ -1,0 +1,31 @@
+{% extends "verkkokauppa/base.html" %}
+{% block content %}
+<p> {{ product.name }}</p>
+
+<p>Tuottetiedot:</p>
+    <ul>
+        {% for detail in productdetails %}
+            <p>Kuvaus: {{ detail.detail }}</p>
+            {% if detail.photo %}
+                <p><img src="{{ detail.photo.url }}" alt="Tuotekuva"></p>
+            {% endif %}
+        {% empty %}
+            <p>Ei tuote tietoja.</p>
+        {% endfor %}
+    </ul>
+    <ul>
+        <p>Hinta: {{ product.price }}</p>
+        <p>Varastossa: {{ product.stock }}</p>
+    </ul>
+
+
+<p>Tuote arvostelut:</p>
+    <ul>
+        {% for review in product.review_set.all %}
+            <p>tähdet: {{ review.stars }} </p>
+            <li> {{ review.review }}</li>
+        {% empty %}
+            <li>Arvosteluja ei ole lisätty.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

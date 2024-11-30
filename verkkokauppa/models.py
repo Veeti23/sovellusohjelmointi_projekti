@@ -1,43 +1,31 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Product model
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    name = models.CharField(max_length=100, help_text="Lisää tuotteen nimi")
+    price = models.DecimalField(max_digits=8, decimal_places=2, help_text="Lisää tuotteen hinta")
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} - {self.price}€"
+        return (f"{self.name}: {self.price}€")
 
-# Reviews model.
-class Reviews(models.Model):
+
+class Productdetail(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    rating = models.IntegerField(
-        default=0,
-        help_text="Give a rating between 1-5",
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
-    )
-    review = models.TextField(max_length=255)
-    date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Review"
-        verbose_name_plural = "Reviews"
-        ordering = ['date']
+    detail = models.CharField(max_length=400, help_text="Lisää tuotteen tarkempi kuvaus")
+    photo = models.ImageField(upload_to="images/", blank=True, null=True, help_text="Lisää tuotekuva")
 
     def __str__(self):
-        return str(self.rating)
-
-# Product Description model.
-class ProductDescription(models.Model):
+        return (f"{self.product.name}: {self.product.price}€ Tuotekuvaus: {self.detail}")
+    
+    
+class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    description = models.TextField()
+    review = models.TextField(max_length=300, help_text="Lisää arvostelu")
+    stars = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)],
+        help_text="Anna tähtiä (0-5)")
+    date_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.product.name}, {self.description}"
-
-    class Meta:
-        verbose_name = "Product Description"
-        verbose_name_plural = "Product Descriptions"
-        ordering = ['product']
-
+        return (f"{self.product}: {str(self.stars)} stars {self.review}")

@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klikkauskauppa</title>
+    <link rel="stylesheet" href="{% static 'verkkokauppa/css/base.style.css' %}">
+</head>
+<body>
+    <p>
+        <a href="{% url 'verkkokauppa:home' %}">KLIKKAUSKAUPPA</a>
+        <a href="{% url 'verkkokauppa:products' %}">TUOTTEET</a>
+    </p>
+
+    {% block content %}{% endblock content %}
+</body>
+</html>

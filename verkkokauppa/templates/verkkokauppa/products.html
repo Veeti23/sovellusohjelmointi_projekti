@@ -1,0 +1,14 @@
+{% extends "verkkokauppa/base.html" %}
+{% block content %}
+
+<p>Tuotteet:</p>
+    <ul>
+        {% for product in products %}
+            <p><a href="{% url 'verkkokauppa:product_detail' product.id %}">{{ product }}</a></p>
+        {% empty %}
+            <li>Tuotteita ei ole lisätty.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
+                

@@ -1,0 +1,23 @@
+Kaupan nimi: Klikkauskauppa
+________________________________
+
+SUPERUSER:
+username - admin
+password - admin123
+
+KÄYTTÄJÄT:
+username - 
+password -
+
+username -
+password -
+
+username -
+password -
+
+username -
+password -
+_________________________________
+
+pip install django
+pip install Pillow
