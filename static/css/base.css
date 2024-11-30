@@ -1,0 +1,76 @@
+/* static/css/base.css */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1;
+}
+
+header {
+    background-color: #343a40; /* Tumma harmaa taustaväri */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lisää varjoa */
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #fff; /* Valkoinen tekstin väri */
+    font-family: 'Courier New', Courier, monospace; /* Uusi fontti */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Lisää varjoa */
+}
+
+nav {
+    background-color: #343a40; /* Tummempi harmaa taustaväri */
+    text-align: left;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #adb5bd; /* Vaaleampi harmaa linkkien väri */
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #6c757d; /* Tumma harmaa hover-taustaväri */
+    color: #fff;
+}
+
+/* Footer tyylit */
+footer {
+    background-color: #343a40; /* Tumma harmaa taustaväri */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

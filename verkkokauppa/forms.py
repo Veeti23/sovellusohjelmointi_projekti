@@ -1,18 +1,6 @@
 from django import forms
 from .models import Product, Productdetail, Review
 
-class ProductForm(forms.ModelForm):
-    class Meta:
-        model = Product, Productdetail
-        fields = ["name", "price", "detail", "photo", "stock"]
-        labels = {
-            "name": "Tuotteen nimi",
-            "price": "Tuotteen hinta",
-            "detail": "Tuotteen kuvaus",
-            "photo": "Tuotekuva",
-            "stock": "Varastosaldo"
-        }
-
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review

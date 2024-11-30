@@ -1,18 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klikkauskauppa</title>
-    <link rel="stylesheet" href="{% static 'verkkokauppa/css/base.style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <p>
-        <a href="{% url 'verkkokauppa:home' %}">KLIKKAUSKAUPPA</a>
-        <a href="{% url 'verkkokauppa:products' %}">TUOTTEET</a>
-    </p>
+    <div class="wrapper">
+    <header class="main-header">
+        <div class="logo">
+            <h1 class="logo"><a href="{% url 'verkkokauppa:home' %}">KLIKKAUSKAUPPA</a></h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a><li>
+            </ul>
+        </nav>
+    </header>
 
-    {% block content %}{% endblock content %}
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+   
+    <footer class="main-footer">
+        <p>Alaotsikko</p>
+    </footer>
 </body>
 </html>

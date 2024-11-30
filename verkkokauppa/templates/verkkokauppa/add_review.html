@@ -1,0 +1,16 @@
+{% extends "verkkokauppa/base.html" %}
+{% block content %}
+    <h1>{{ product.name }}</h1>
+    <form action="{% url 'verkkokauppa:add_review' product.id %}" method="post">
+         {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.errors %}
+                <div class="errors">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+        <button type="submit">Tallenna</button>
+        <a href="{% url 'verkkokauppa:product_detail' product.id %}">
+            <button type="button">Peruuta</button>
+    </form>
+{% endblock content %}

@@ -1,14 +1,18 @@
 {% extends "verkkokauppa/base.html" %}
 {% block content %}
 
-<p>Tuotteet:</p>
-    <ul>
+    <h2>Tuotteet</h2>
+    <div class="product-grid">
         {% for product in products %}
-            <p><a href="{% url 'verkkokauppa:product_detail' product.id %}">{{ product }}</a></p>
+        <a href="{% url 'verkkokauppa:product_detail' product.id %}" class="product-card">
+            <img src="{{ product.image.url }}">
+            <h3>{{ product.name }}</h3>
+            <p class="price">{{ product.price }}€</p>
+            <button>Lisää ostoskoriin</button>
+        </a>
         {% empty %}
-            <li>Tuotteita ei ole lisätty.</li>
+            <p>Tuotteita ei ole lisätty.</p>
         {% endfor %}
-    </ul>
+    </div>
 
 {% endblock content %}
-                

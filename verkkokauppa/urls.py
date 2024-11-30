@@ -12,7 +12,7 @@ urlpatterns = [
     path("review/<int:product_id>/", views.review, name="review"),
     # Product detail page
     path("product/<int:product_id>/", views.product_detail, name="product_detail"),
-    # Product detail page
-    # path("productdetail/<int:product_id>/", views.productdetail, name="productdetail"),
-
+    # Add review page
+    path("product/<int:product_id>/add_review/", views.add_review, name="add_review"),
+   
 ]

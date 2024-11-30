@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+
 from .models import Product, Productdetail, Review
+from .forms import ReviewForm
 
 
 def home(request):
@@ -27,3 +29,17 @@ def review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     context = {"product": product, "reviews": product.review_set.all()}
     return render(request, "verkkokauppa/review.html", context)
+
+def add_review(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == "POST":
+        form = ReviewForm(data=request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.save()
+            return redirect("verkkokauppa:review", product_id=product.id)
+    else:
+        form = ReviewForm()
+    context = {"product": product, "form": form}
+    return render(request, "verkkokauppa/add_review.html", context)
