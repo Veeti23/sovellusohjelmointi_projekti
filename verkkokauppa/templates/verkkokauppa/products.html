@@ -6,9 +6,7 @@
         {% for product in products %}
         <a href="{% url 'verkkokauppa:product_detail' product.id %}" class="product-card">
             <img src="{{ product.image.url }}">
-            <h3>{{ product.name }}</h3>
-            <p class="price">{{ product.price }}€</p>
-            <button>Lisää ostoskoriin</button>
+            <h3>{{ product.name }} {{ product.price }}€</h3>
         </a>
         {% empty %}
             <p>Tuotteita ei ole lisätty.</p>

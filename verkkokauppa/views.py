@@ -43,3 +43,7 @@ def add_review(request, product_id):
         form = ReviewForm()
     context = {"product": product, "form": form}
     return render(request, "verkkokauppa/add_review.html", context)
+
+def info(request):
+    # Render the info page
+    return render(request, "verkkokauppa/info.html")

@@ -28,7 +28,7 @@
             <li>Arvosteluja ei ole lisätty.</li>
         {% endfor %}
     </ul>
-
-    <a href="{% url 'verkkokauppa:add_review' product.id %}">Arvostele tuote</a>
+    <a href="{% url 'verkkokauppa:add_review' product.id %}">
+    <button type="button"> Arvostele tuote</button>
 
 {% endblock content %}

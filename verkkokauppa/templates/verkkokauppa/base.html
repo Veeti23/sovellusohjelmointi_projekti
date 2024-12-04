@@ -8,24 +8,26 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <div class="wrapper">
     <header class="main-header">
-        <div class="logo">
-            <h1 class="logo"><a href="{% url 'verkkokauppa:home' %}">KLIKKAUSKAUPPA</a></h1>
+        <div>
+            <h1 class="logo"><a href="{% url 'verkkokauppa:home' %}">KLIKKAUPPA</a></h1>
+            <input type="text" placeholder="Hae tuotteita...">
         </div>
-        <nav class="main-nav">
-            <ul>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="{% url 'verkkokauppa:home' %}" class="nav-link">Etusivu</a></li>
                 <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a><li>
+                <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
+                <li><a href=# class="nav-link">Ostoskori</a></li>
+                <li><a href=# class="nav-link">Kirjaudu</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
         {% block content %}{% endblock content %}
     </main>
-   
-    <footer class="main-footer">
-        <p>Alaotsikko</p>
-    </footer>
 </body>
+    <footer class="main-footer">
+        <p>2024 www.Klikkauskauppa.fi</p>
+    </footer>
 </html>

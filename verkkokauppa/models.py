@@ -21,7 +21,7 @@ class Productdetail(models.Model):
     
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    review = models.TextField(max_length=300, help_text="Lisää arvostelu")
+    review = models.TextField(max_length=300)
     stars = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         help_text="Anna tähtiä (0-5)")
