@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100, help_text="Lisää tuotteen nimi")
@@ -17,8 +19,7 @@ class Productdetail(models.Model):
 
     def __str__(self):
         return (f"{self.product.name}: {self.product.price}€ Tuotekuvaus: {self.detail}")
-    
-    
+
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     review = models.TextField(max_length=300)
@@ -26,6 +27,7 @@ class Review(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         help_text="Anna tähtiä (0-5)")
     date_added = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return (f"{self.product}: {str(self.stars)} stars {self.review}")

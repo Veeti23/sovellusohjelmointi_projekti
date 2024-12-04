@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from .models import Product, Productdetail, Review
 from .forms import ReviewForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def home(request):
@@ -23,13 +24,13 @@ def product_detail(request, product_id):
     context = {"product": product, "productdetails": productdetails}
     return render(request, "verkkokauppa/product.html", context)
 
-
 def review(request, product_id):
     # Render the review page
     product = get_object_or_404(Product, id=product_id)
     context = {"product": product, "reviews": product.review_set.all()}
-    return render(request, "verkkokauppa/review.html", context)
+    return render(request, "verkkokauppa/product.html", context)
 
+@login_required
 def add_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
@@ -41,8 +42,10 @@ def add_review(request, product_id):
             return redirect("verkkokauppa:review", product_id=product.id)
     else:
         form = ReviewForm()
+
     context = {"product": product, "form": form}
     return render(request, "verkkokauppa/add_review.html", context)
+
 
 def info(request):
     # Render the info page

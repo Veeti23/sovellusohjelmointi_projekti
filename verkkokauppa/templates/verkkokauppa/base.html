@@ -19,7 +19,17 @@
                 <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a><li>
                 <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
                 <li><a href=# class="nav-link">Ostoskori</a></li>
-                <li><a href=# class="nav-link">Kirjaudu</a></li>
+
+                {% if user.is_authenticated %}
+                    <li>Hello, {{ user.username }}!</li>
+                    <li><a href="{% url 'users:logout' %}" class="nav-link">Kirjaudu ulos</a></li>
+                {% else %}
+                    <li><a href="{% url 'users:register' %}" class="nav-link">Rekisteröidy</a></li>
+                    <li><a href="{% url 'users:login' %}" class="nav-link">Kirjaudu sisään</a></li>
+                {% endif %}
+
+
+
             </ul>
         </nav>
     </header>
@@ -30,4 +40,4 @@
     <footer class="main-footer">
         <p>2024 www.Klikkauskauppa.fi</p>
     </footer>
-</html>
+</html>.

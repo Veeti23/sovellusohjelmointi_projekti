@@ -6,11 +6,11 @@ username - admin
 password - admin123
 
 KÄYTTÄJÄT:
-username - 
-password -
+username - Leevi
+password - Salasana123456789
 
-username -
-password -
+username - Pekka
+password - alasana123456789
 
 username -
 password -
