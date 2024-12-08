@@ -24,6 +24,8 @@
 
     <button name="submit">Kirjaudu sisään</button>
     <input type="hidden" name="next" value="{% url 'verkkokauppa:home' %}">
+
+    <p>Eikö sinulla ole vielä tunnuksia? <a href="{% url 'users:register' %}">Rekisteröidy tästä</a></p>
 </form>
 
 

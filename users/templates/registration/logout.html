@@ -1,0 +1,10 @@
+{% extends 'verkkokauppa/base.html' %}
+
+{% block content %}
+    <h2>Haluatko varmasti kirjautua ulos?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Kyllä, kirjaudu ulos</button>
+        <a href="{% url 'verkkokauppa:home' %}">Peruuta</a>
+    </form>
+{% endblock content %}

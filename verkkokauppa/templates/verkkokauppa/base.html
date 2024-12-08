@@ -8,36 +8,41 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <header class="main-header">
-        <div>
-            <h1 class="logo"><a href="{% url 'verkkokauppa:home' %}">KLIKKAUPPA</a></h1>
-            <input type="text" placeholder="Hae tuotteita...">
-        </div>
-        <nav>
-            <ul class="main-nav">
-                <li><a href="{% url 'verkkokauppa:home' %}" class="nav-link">Etusivu</a></li>
-                <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a><li>
-                <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
-                <li><a href=# class="nav-link">Ostoskori</a></li>
+    <div class="wrapper">
+        <header class="main-header">
+            <div class="header-top">
+                <div class="logo-container">
+                    <a class="logo" href="{% url 'verkkokauppa:home' %}">
+                        <img src="{% static 'images/Logo.png' %}" alt="Klikkauskauppa Logo">
+                    </a>
+                </div>
+                <div class="search-container">
+                    <input class="search" type="text" placeholder="Hae tuotteita...">
+                </div>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="{% url 'verkkokauppa:home' %}" class="nav-link">Etusivu</a></li>
+                    <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a><li>
+                    <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
+                    <li><a href=# class="nav-link">Ostoskori</a></li>
 
-                {% if user.is_authenticated %}
-                    <li>Hello, {{ user.username }}!</li>
-                    <li><a href="{% url 'users:logout' %}" class="nav-link">Kirjaudu ulos</a></li>
-                {% else %}
-                    <li><a href="{% url 'users:register' %}" class="nav-link">Rekisteröidy</a></li>
-                    <li><a href="{% url 'users:login' %}" class="nav-link">Kirjaudu sisään</a></li>
-                {% endif %}
+                    {% if user.is_authenticated %}
+                        <li><span>Hello, {{ user.username }}!</span></li>
+                        <li><a href="{% url 'users:logout' %}" class="nav-link">Kirjaudu ulos</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}" class="nav-link">Kirjaudu sisään</a></li>
+                    {% endif %}
 
-
-
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}{% endblock content %}
-    </main>
-</body>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock content %}
+        </main>
+    </div>
     <footer class="main-footer">
         <p>2024 www.Klikkauskauppa.fi</p>
     </footer>
-</html>.
+</body>
+</html>
