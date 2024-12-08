@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # Include the admin site urls.
     path('admin/', admin.site.urls),
+    # Include the verkkokauppa app urls.
     path('Klikkauskauppa/', include('verkkokauppa.urls')),
+    # Include the users app urls.
     path('users/', include('users.urls')),
 ]

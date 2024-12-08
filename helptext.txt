@@ -1,4 +1,6 @@
 Kaupan nimi: Klikkauskauppa
+
+
 ________________________________
 
 SUPERUSER:
@@ -21,3 +23,7 @@ _________________________________
 
 pip install django
 pip install Pillow
+
+_________________________________
+
+Verkkosivun kuvat: static/Images/(--kuva--)
