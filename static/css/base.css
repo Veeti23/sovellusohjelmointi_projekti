@@ -75,6 +75,8 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    padding: 0;  /* Remove vertical padding */
+    margin: 0;   /* Remove vertical margin */
 }
 
 .logo {
@@ -82,8 +84,8 @@ body {
 }
 
 .logo h1 {
-    margin: 0;
-    font-size: 28px;
+    margin: 0;  /* Remove all margins */
+    font-size: 32px;
     color: black;
     font-weight: 900;
     text-align: center;
@@ -96,16 +98,18 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 0;     /* Adjust top margin */
+    margin-bottom: 0;  /* Remove bottom margin */
     flex-wrap: wrap;  /* Ensure text stays in one line */
-    margin-bottom: 20px;  /* Add space below the logo subtext */
 }
 
 .logo-subtext span {
+    margin: 0 15px 0 0;
     font-size: 10px;
     color: #666;
     text-transform: none;
     white-space: nowrap;  /* Prevent text from wrapping */
+    padding-top: 0;       /* Remove any top padding */
 }
 
 .main-footer {
@@ -150,9 +154,9 @@ body {
 
 .search {
     width: 100%;
-    padding: 6px 12px;
+    padding: 8px 15px;  /* Slightly larger padding */
     border: 1px solid #ddd;
-    border-radius: 15px;
+    border-radius: 20px;
     font-size: 14px;
     transition: all 0.3s ease;
     outline: none;  /* Remove default focus outline */
@@ -166,7 +170,7 @@ body {
 .header-top {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 20px;  /* Reduce vertical padding */
     position: relative;
 }
 
@@ -176,40 +180,37 @@ body {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
+    min-width: 120px; /* Add fixed minimum width */
 }
 
-.login-link {
+.login-link, 
+.profile-link {
     color: #666;
-    font-size: 18px;  /* Slightly smaller icon */
+    font-size: 18px;
     text-decoration: none;
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 6px;  /* Slightly reduced gap */
+    justify-content: flex-end; /* Align items to the right */
+    gap: 6px;
+    width: 100%; /* Take full width of container */
 }
 
 .login-text {
     font-size: 12px;
     font-weight: 500;
-    color: #333;  /* Slightly darker for better readability */
-    text-transform: capitalize;  /* Capitalize the first letter of username */
-    transition: color 0.3s ease;  /* Add transition for smooth color change */
-}
-
-.login-link:hover {
-    color: #ff7e5f;  /* Change icon to orange on hover */
-}
-
-.login-link:hover .login-text {
-    color: #ff7e5f;  /* Change text to orange on hover */
-}
-
-.profile-link:hover .login-text {
-    color: #ff7e5f;  /* Change text to orange on hover */
-}
-
-.login-link:hover {
     color: #333;
+    text-transform: capitalize;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Remove duplicate hover styles and consolidate them */
+.login-link:hover,
+.login-link:hover .login-text,
+.profile-link:hover,
+.profile-link:hover .login-text {
+    color: #ff7e5f;
 }
 
 .user-dropdown {
@@ -268,4 +269,10 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
     color: #555;
+}
+
+.search-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }

@@ -1,0 +1,33 @@
+{% extends "verkkokauppa/base.html" %}
+{% block content %}
+    <h2>Ostoskori</h2>
+    {% if cart.cartitem_set.all %}
+        <div class="cart-items">
+            {% for item in cart.cartitem_set.all %}
+                <div class="cart-item">
+                    {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    {% else %}
+                        <div class="no-image">Ei kuvaa saatavilla</div>
+                    {% endif %}
+                    <div class="cart-item-info">
+                        <h3>{{ item.product.name }}</h3>
+                        <p>Hinta: {{ item.product.price }}€</p>
+                        <form method="post" action="{% url 'verkkokauppa:update_cart' item.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}">
+                            <button type="submit">Päivitä</button>
+                        </form>
+                        <p>Yhteensä: {{ item.get_cost }}€</p>
+                        <a href="{% url 'verkkokauppa:remove_from_cart' item.id %}" class="btn btn-danger">Poista</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="cart-total">
+                <h3>Kokonaissumma: {{ cart.get_total_price }}€</h3>
+            </div>
+        </div>
+    {% else %}
+        <p>Ostoskorisi on tyhjä.</p>
+    {% endif %}
+{% endblock %}

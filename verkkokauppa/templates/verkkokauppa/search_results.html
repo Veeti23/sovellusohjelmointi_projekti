@@ -1,0 +1,16 @@
+{% extends "verkkokauppa/base.html" %}
+
+{% block content %}
+    <h2>Hakutulokset: "{{ query }}"</h2>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    <a href="{% url 'verkkokauppa:product_detail' product.id %}">{{ product.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ei tuloksia haulle "{{ query }}".</p>
+    {% endif %}
+{% endblock %}

@@ -8,13 +8,16 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <div class="website">
         <header class="main-header">
             <div class="header-top">
                 <div class="search-container">
-                    <input class="search" type="text" placeholder="Etsi tuotteita...">
+                    <form action="{% url 'verkkokauppa:search_products' %}" method="get">
+                        <input class="search" type="text" name="q" placeholder="Etsi tuotteita...">
+                    </form>
                 </div>
                 <div class="logo-container">
                     <a class="logo" href="{% url 'verkkokauppa:home' %}">
@@ -52,7 +55,7 @@
                     <li><a href="{% url 'verkkokauppa:home' %}" class="nav-link">Etusivu</a></li>
                     <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a></li>
                     <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
-                    <li><a href="#" class="nav-link">Ostoskori</a></li>
+                    <li><a href="{% url 'verkkokauppa:view_cart' %}" class="nav-link">Ostoskori</a></li>
                 </ul>
             </nav>
         </header>

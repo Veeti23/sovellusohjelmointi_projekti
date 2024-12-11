@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Productdetail
+from .models import Product, Productdetail, Cart, CartItem
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 def home(request):
     # Render the home page.
@@ -9,9 +10,11 @@ def home(request):
 
 
 def products(request):
-    # Render the products page.
+    # Get all products
     products = Product.objects.all()
-    context = {"products": products}
+    context = {
+        "products": products,
+    }
     return render(request, "verkkokauppa/products.html", context)
 
 
@@ -56,3 +59,41 @@ def add_review(request, product_id):
 def info(request):
     # Render the info page.
     return render(request, "verkkokauppa/info.html")
+
+def search_products(request):
+    query = request.GET.get('q')
+    products = Product.objects.filter(Q(name__icontains=query))
+    context = {"products": products, "query": query}
+    return render(request, "verkkokauppa/search_results.html", context)
+
+@login_required
+def view_cart(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    return render(request, 'verkkokauppa/cart.html', {'cart': cart})
+
+@login_required
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+    
+    return redirect('verkkokauppa:view_cart')
+
+@login_required
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+    cart_item.delete()
+    return redirect('verkkokauppa:view_cart')
+
+@login_required
+def update_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+    quantity = int(request.POST.get('quantity', 1))
+    if quantity > 0 and quantity <= cart_item.product.stock:
+        cart_item.quantity = quantity
+        cart_item.save()
+    return redirect('verkkokauppa:view_cart')

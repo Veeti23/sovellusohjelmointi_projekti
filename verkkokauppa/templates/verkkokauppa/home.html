@@ -1,9 +1,27 @@
 {% extends "verkkokauppa/base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock head %}
 
 {% block content %}
+<div class="hero-section">
+    <h1>Tervetuloa verkkokauppaan!</h1>
+    <p class="hero-text">Löydä parhaat tuotteet kilpailukykyiseen hintaan</p>
+</div>
 
-<h2> Tervetuloa verkkokauppaan! </h2>
-
-<p class="favourite-text">Suositut<p>
-
+<section class="featured-products">
+    <h2 class="section-title">Suositut tuotteet</h2>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p class="price">{{ product.price }} €</p>
+            <a href="{% url 'product_detail' product.id %}" class="btn-view">Katso tuote</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}
