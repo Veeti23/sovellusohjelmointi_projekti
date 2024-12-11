@@ -1,134 +1,107 @@
-/* static/css/base.css */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-body {
+.website {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-.wrapper {
-    flex: 1;
-}
-
-header {
-    background-color: #2c3e50;
-    padding: 15px 0;
+.main-nav {
+    background-color: rgb(64, 63, 63);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lisää varjoa */
-}
-
-.header-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    list-style-type: none; /* Remove bullet points */
 }
 
-.logo-container {
-    flex: 0 0 auto;
-}
-
-.logo img {
-    height: 60px;
-    width: auto;
-    vertical-align: middle;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.logo img:hover {
-    opacity: 0.7;
-}
-
-.search-container {
-    flex: 1;
-    max-width: 500px;
-    margin: 0 20px;
-}
-
-.search {
-    width: 100%;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.search:focus {
-    outline: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-header .logo h1 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #fff; /* Valkoinen tekstin väri */
-    font-family: 'Courier New', Courier, monospace; /* Uusi fontti */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Lisää varjoa */
-}
-
-nav {
-    background-color: #343a40; /* Tummempi harmaa taustaväri */
-    text-align: left;
-    padding: 10px 0;
-}
-
-nav ul {
+.main-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-button {
-    background: none; 
-    border: none; 
-    padding: 0; 
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
+.main-nav li {
+    display: inline-block;
+    padding: 0 15px;
 }
 
 .nav-link {
+    color: white;
     text-decoration: none;
-    color: #adb5bd; /* Vaaleampi harmaa linkkien väri */
-    padding: 10px 20px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 0 5px;
-}
-
-.nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    transition: transform 0.2s ease;
-}
-
-/* Footer tyylit */
-footer {
-    background-color: #2c3e50;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    display: inline-block;
     position: relative;
+    padding-bottom: 2px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
     bottom: 0;
-    width: 100%;
-    margin-top: auto;
+    left: 50%; /* Start from center */
+    background-color: white;
+    transition: width 0.3s ease;
+    transform: translateX(-50%); /* Center the line */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expand to full width */
+}
+
+.logo-container {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.main-footer {
+    background-color: rgb(64, 63, 63); /* Match the main-nav background color */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #ff7e5f;
+}
+
+.social-link i {
+    margin-right: 5px;
 }
