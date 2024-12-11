@@ -1,19 +1,49 @@
 {% extends "verkkokauppa/base.html" %}
+{% load static %}
+
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 
-{% if form.errors %}
-    <p>Rekisteröityminen epäonnistui. Tarkista syöttämäsi tiedot.</p>
-{% endif %}
+<div class="outer-container">
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Rekisteröidy</h2>
+            
+            {% if form.errors %}
+                <div class="error-message">
+                    Rekisteröityminen epäonnistui. Tarkista syöttämäsi tiedot.
+                </div>
+            {% endif %}
 
-<form method="post" action="{% url 'users:register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
+            <form method="post" action="{% url 'users:register' %}" class="register-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {% if field.name == "username" %}
+                            <label for="{{ field.id_for_label }}">Käyttäjänimi</label>
+                        {% elif field.name == "password" %}
+                            <label for="{{ field.id_for_label }}">Salasana</label>
+                        {% else %}
+                            {{ field.label_tag }}
+                        {% endif %}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
 
+                <button type="submit" class="register-button">Rekisteröidy</button>
+                <input type="hidden" name="next" value="{% url 'verkkokauppa:home' %}">
+            </form>
 
-    <button name="submit">Rekisteröidy</button>
-    <input type="hidden" name="next" value="{% url 'verkkokauppa:home' %}">
-
-    <p>Onko sinulla jo tunnukset? <a href="{% url 'users:login' %}">Kirjaudu sisään tästä</a></p>
-</form>
-
+            <div class="login-link">
+                Onko sinulla jo tunnukset? <a href="{% url 'users:login' %}">Kirjaudu sisään tästä</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

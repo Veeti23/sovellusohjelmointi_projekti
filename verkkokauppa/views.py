@@ -26,7 +26,8 @@ def product_detail(request, product_id):
 def review(request, product_id):
     # Render the review page.
     product = get_object_or_404(Product, id=product_id)
-    context = {"product": product, "reviews": product.review_set.all()}
+    productdetails = Productdetail.objects.filter(product=product)
+    context = {"product": product, "productdetails": productdetails, "reviews": product.review_set.all()}
     return render(request, "verkkokauppa/product.html", context)
 
 @login_required
@@ -35,7 +36,7 @@ def add_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     # Check if the form has been submitted.
     if request.method == "POST":
-        form = ReviewForm(data=request.POST)
+        form = ReviewForm(request.POST, request.FILES)
         if form.is_valid():
             # Save the review to the database.
             review = form.save(commit=False)

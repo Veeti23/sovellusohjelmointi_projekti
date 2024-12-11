@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=100, help_text="Lisää tuotteen nimi")
     price = models.DecimalField(max_digits=8, decimal_places=2, help_text="Lisää tuotteen hinta")
+    stock = models.PositiveIntegerField(default=0, help_text="Lisää tuotteen varastomäärä")
+    image = models.ImageField(upload_to="images/", blank=True, null=True, help_text="Lisää tuotekuva")
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

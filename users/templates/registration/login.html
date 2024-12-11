@@ -1,32 +1,37 @@
 {% extends "verkkokauppa/base.html" %}
+{% load static %}
+
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 
-{% if form.errors %}
-    <p>Kirjautuminen epäonnistui. Tarkista käyttäjätunnus ja salasana.</p>
-{% endif %}
-
-
-
-<form method="post" action="{% url 'users:login' %}">
-    {% csrf_token %}
-    {% for field in form %}
-        <p>
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.help_text %}
-                <small>{{ field.help_text }}</small>
+<div class="outer-container">
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Kirjaudu sisään</h2>
+            
+            {% if form.errors %}
+                <div class="error-message">
+                    Käyttäjätunnus tai salasana on virheellinen.
+                </div>
             {% endif %}
-            {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
-    {% endfor %}
 
-    <button name="submit">Kirjaudu sisään</button>
-    <input type="hidden" name="next" value="{% url 'verkkokauppa:home' %}">
+            <form method="post" action="{% url 'users:login' %}" class="register-form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
 
-    <p>Eikö sinulla ole vielä tunnuksia? <a href="{% url 'users:register' %}">Rekisteröidy tästä</a></p>
-</form>
+                <button type="submit" class="register-button">Kirjaudu</button>
+                <input type="hidden" name="next" value="{% url 'verkkokauppa:home' %}">
+            </form>
 
-
+            <div class="login-link">
+                Eikö sinulla ole tunnuksia? <a href="{% url 'users:register' %}">Rekisteröidy tästä</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -18,10 +18,9 @@
         <p>Varastossa: {{ product.stock }}</p>
     </ul>
 
-
 <p>Tuote arvostelut:</p>
     <ul>
-        {% for review in product.review_set.all %}
+        {% for review in reviews %}
             <p>tähdet: {{ review.stars }} </p>
             <li> {{ review.review }}</li>
         {% empty %}

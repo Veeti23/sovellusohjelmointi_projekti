@@ -13,13 +13,38 @@
     <div class="website">
         <header class="main-header">
             <div class="header-top">
+                <div class="search-container">
+                    <input class="search" type="text" placeholder="Etsi tuotteita...">
+                </div>
                 <div class="logo-container">
                     <a class="logo" href="{% url 'verkkokauppa:home' %}">
                         <h1>KLIKKAUSKAUPPA</h1>
+                        <div class="logo-subtext">
+                            <span>Laaja valikoima</span>
+                            <span>Nopeat toimitukset</span>
+                            <span>Helppo ja turvallinen</span>
+                            <span>Kilpailukykyiset hinnat</span>
+                        </div>
                     </a>
-                <div class="search-container">
-                    <input class="search" type="text" placeholder="Hae tuotteita...">
-                    <button class="search-button">Hae</button>
+                </div>
+                <div class="login-container">
+                    {% if user.is_authenticated %}
+                        <div class="user-dropdown">
+                            <a href="#" class="login-link profile-link">
+                                <span class="login-text">{{ user.username }}</span>
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="user-dropdown-content">
+                                <a href="#">Profiili</a>
+                                <a href="{% url 'users:logout' %}">Kirjaudu ulos</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="login-link">
+                            <span class="login-text">Kirjaudu sisään</span>
+                            <i class="fas fa-user"></i>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             <nav>
@@ -28,21 +53,10 @@
                     <li><a href="{% url 'verkkokauppa:products' %}" class="nav-link">Tuotteet</a></li>
                     <li><a href="{% url 'verkkokauppa:info' %}" class="nav-link">Tietoa meistä</a></li>
                     <li><a href="#" class="nav-link">Ostoskori</a></li>
-
-                    {% if user.is_authenticated %}
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">Hello, {{ user.username }}!</a>
-                            <div class="dropdown-menu">
-                                <a href="{% url 'users:profile' %}" class="dropdown-item">Profiili</a>
-                                <a href="{% url 'users:logout' %}" class="dropdown-item">Kirjaudu ulos</a>
-                        </li>
-                    {% else %}
-                        <li><a href="{% url 'users:login' %}" class="nav-link">Kirjaudu sisään</a></li>
-                    {% endif %}
                 </ul>
             </nav>
         </header>
-        <main>
+        <main class="main-content">
             {% block content %}{% endblock content %}
         </main>
     </div>

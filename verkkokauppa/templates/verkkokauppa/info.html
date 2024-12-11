@@ -1,20 +1,63 @@
 {% extends "verkkokauppa/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/info.css' %}">
+{% endblock %}
 
 {% block content %}
+    <div class="info-container">
+        <div class="info-section main-info">
+            <h2><i class="fas fa-store"></i> Tietoa meistä</h2>
+            <div class="info-content">
+                <p>Verkkokauppa on perustettu vuonna 2024 intohimosta tarjota asiakkaillemme parhaita tuotteita kilpailukykyiseen hintaan. Olemme kasvaneet nopeasti yhdeksi Suomen luotetuimmista verkkokaupoista.</p>
+                <p>Meille tärkeintä on asiakastyytyväisyys ja laadukas palvelu. Kaikki tuotteemme ovat tarkoin valittuja ja testattuja.</p>
+                <p>Haluamme olla edelläkävijä verkkokaupan alalla ja kehitämme jatkuvasti palveluitamme asiakkaidemme toiveiden mukaisesti.</p>
+            </div>
+        </div>
 
-    <h2>Tietoa meistä</h2>
-    <p>Verkkokauppa on perustettu vuonna 2021. Verkkokauppa tarjoaa laajan valikoiman tuotteita. Tuotteet ovat laadukkaita ja edullisia.</p> 
-    <p>Verkkokaupasta löydät tuotteita joka lähtöön.</p> 
-    <p>Verkkokauppa on suosittu ja luotettava verkkokauppa. Tervetuloa ostoksille!</p>
+        <div class="info-section">
+            <h4><i class="fas fa-address-card"></i> Yhteystiedot</h4>
+            <div class="contact-info">
+                <p><i class="fas fa-building"></i> Y-tunnus: 1234567-8</p>
+                <p><i class="fas fa-phone"></i> Puhelinnumero: 1234125414</p>
+                <p><i class="fas fa-envelope"></i> Sähköposti: klikkauskauppa@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Osoite: Klikkauskauppa, Esimerkkikatu 1, 00100 Helsinki</p>
+            </div>
+        </div>
 
+        <div class="info-section delivery-info">
+            <h4><i class="fas fa-truck"></i> Toimitus</h4>
+            <div class="info-content">
+                <p>Toimitamme tuotteet kaikkialle Suomeen. Toimitusaika on yleensä 2-5 arkipäivää.</p>
+                <ul class="delivery-options">
+                    <li><i class="fas fa-box"></i> Postipaketti (5,90€)</li>
+                    <li><i class="fas fa-home"></i> Kotiinkuljetus (9,90€)</li>
+                    <li><i class="fas fa-store-alt"></i> Nouto myymälästä (0€)</li>
+                </ul>
+            </div>
+        </div>
 
-    <h4>Yhteystiedot</h4>
-        <p>Y-tunnus: 1234567-8</p>
-        <p>Puhelinnumero: 1234125414</p>
-        <p>Sähköposti: klikkauskauppa@gmail.com</p>
-        <p>Osoite: Klikkauskauppa, Esimerkkikatu 1, 00100 Helsinki</p>
+        <div class="info-section">
+            <h4><i class="fas fa-exchange-alt"></i> Palautusohjeet</h4>
+            <div class="info-content">
+                <p>Voit palauttaa tuotteen 14 päivän kuluessa. Ota yhteyttä asiakaspalveluun.</p>
+            </div>
+        </div>
 
-    <h4>Palautusohjeet</h4>
-        <p>Voit palauttaa tuotteen 14 päivän kuluessa. Ota yhteyttä asiakaspalveluun.</p>
-
+        <div class="info-section faq">
+            <h4><i class="fas fa-question-circle"></i> Usein kysytyt kysymykset</h4>
+            <div class="info-content">
+                <div class="faq-item">
+                    <h5>Miten voin seurata tilaustani?</h5>
+                    <p>Saat tilausvahvistuksen yhteydessä seurantakoodin sähköpostiisi.</p>
+                </div>
+                <div class="faq-item">
+                    <h5>Milloin saan laskun?</h5>
+                    <p>Lasku toimitetaan sähköpostiisi heti tilauksen yhteydessä.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
