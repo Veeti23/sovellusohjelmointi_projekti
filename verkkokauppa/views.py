@@ -21,17 +21,47 @@ def products(request):
 def product_detail(request, product_id):
     # Render the product detail page.
     product = get_object_or_404(Product, id=product_id)
+    
     # Get the product details for the product.
     productdetails = Productdetail.objects.filter(product=product)
-    context = {"product": product, "productdetails": productdetails}
+    
+    # Get the reviews for the product. If no reviews exist, return an empty list.
+    reviews = product.reviews.all()  # Now you can use product.reviews.all()
+    
+    if not reviews:  # Ensure no error happens when there are no reviews
+        reviews = []
+    
+    # Add reviews and productdetails to the context
+    context = {
+        "product": product,
+        "productdetails": productdetails,
+        "reviews": reviews
+    }
+    
     return render(request, "verkkokauppa/product.html", context)
+
 
 def review(request, product_id):
     # Render the review page.
     product = get_object_or_404(Product, id=product_id)
+    
+    # Fetch product details
     productdetails = Productdetail.objects.filter(product=product)
-    context = {"product": product, "productdetails": productdetails, "reviews": product.review_set.all()}
+    
+    # Correct related_name 'reviews' usage
+    reviews = product.reviews.all()  # Access reviews
+    
+    # Pass the data to the context
+    context = {
+        'product': product,
+        'productdetails': productdetails,
+        'reviews': reviews
+    }
+
+    # Return the response with the context data
     return render(request, "verkkokauppa/product.html", context)
+
+
 
 @login_required
 def add_review(request, product_id):

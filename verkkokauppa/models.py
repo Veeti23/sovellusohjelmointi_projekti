@@ -35,14 +35,15 @@ class Productdetail(models.Model):
 
 # Review model to store product reviews
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')  # Add related_name
     review = models.TextField(max_length=300)
     stars = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], help_text="Anna tähtiä (0-5)")
     date_added = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return (f"{self.product}: {str(self.stars)} stars {self.review}")
+        return f"{self.product}: {str(self.stars)} stars {self.review}"
+
 
 
 # Cart model to store shopping cart details

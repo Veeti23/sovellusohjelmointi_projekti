@@ -18,17 +18,21 @@
         <p>Varastossa: {{ product.stock }}</p>
     </ul>
 
-<p>Tuote arvostelut:</p>
+    <p>Tuote arvostelut:</p>
     <ul>
         {% for review in reviews %}
-            <p><strong>{{ review.owner.username }}</strong> - {{ review.date_added }}</p>
-            <p>tähdet: {{ review.stars }} </p>
-            <li> {{ review.review }}</li>
+            <li>
+                <strong>{{ review.owner.username }}</strong> - {{ review.date_added }}
+                <p>tähdet: {{ review.stars }}</p>
+                <p>{{ review.review }}</p>
+            </li>
         {% empty %}
             <li>Arvosteluja ei ole lisätty.</li>
         {% endfor %}
     </ul>
+    
     <a href="{% url 'verkkokauppa:add_review' product.id %}">
-    <button type="button"> Arvostele tuote</button>
+        <button type="button">Arvostele tuote</button>
+    </a>
 
 {% endblock content %}
