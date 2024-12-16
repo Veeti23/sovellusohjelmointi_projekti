@@ -39,6 +39,7 @@ class Review(models.Model):
     review = models.TextField(max_length=300)
     stars = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], help_text="Anna tähtiä (0-5)")
     date_added = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return (f"{self.product}: {str(self.stars)} stars {self.review}")

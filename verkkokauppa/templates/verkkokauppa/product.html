@@ -21,6 +21,7 @@
 <p>Tuote arvostelut:</p>
     <ul>
         {% for review in reviews %}
+            <p><strong>{{ review.owner.username }}</strong> - {{ review.date_added }}</p>
             <p>tähdet: {{ review.stars }} </p>
             <li> {{ review.review }}</li>
         {% empty %}

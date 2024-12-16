@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Productdetail, Cart, CartItem
+from .models import Product, Productdetail, Cart, CartItem, Review
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -37,6 +37,7 @@ def review(request, product_id):
 def add_review(request, product_id):
     # Add a new review for a product.
     product = get_object_or_404(Product, id=product_id)
+    review = Review.objects.filter(product = product).order_by('-date_added')
     # Check if the form has been submitted.
     if request.method == "POST":
         form = ReviewForm(request.POST, request.FILES)
@@ -46,13 +47,14 @@ def add_review(request, product_id):
             # Set the product for the review.
             review.product = product
             # Set the user for the review.
+            review.owner = request.user
             review.save()
             return redirect("verkkokauppa:review", product_id=product.id)
     else:
         # Create a new form.
         form = ReviewForm()
 
-    context = {"product": product, "form": form}
+    context = {"product": product, "form": form, "reviews": review}
     return render(request, "verkkokauppa/add_review.html", context)
 
 
