@@ -13,7 +13,7 @@ username - Leevi
 password - Salasana123456789
 
 username - Pekka
-password - alasana123456789
+password - Salasana123456789
 
 username -
 password -
